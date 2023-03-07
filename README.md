@@ -2,7 +2,7 @@ The pickle file contains the datasets concerning the 88 days of rainfall measure
 
 Open the datasets using the pickle library for python with the following commands:
 
-```
+```ruby
 import pickle as pk 
 
 datasetPath = "SRS_dataset_88days.pkl"  
