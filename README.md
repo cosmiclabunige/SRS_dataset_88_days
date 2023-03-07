@@ -12,9 +12,9 @@ with open(datasetPath, "rb") as f:
 ```
 
 |**Event**|**Day**|  **h** |**max RI**|  **d**  |
-| **ID**  |       |**[mm]**|**[mm/h]**|**[min]**|
-| :-----: | :---: | :----: | :------: | :-----: |
-|         |       |        |          |         ||
+  **ID**  |       |**[mm]**|**[mm/h]**|**[min]**|
+  :-----: | :---: | :----: | :------: | :-----: |
+          |       |        |          |         ||
 
 
 The *dataset* is a dictionary containing the 88 days SRS measurements expressed in mV for both dishes, the 88 days TBRG measurements expressed in mm/min, and the timestamps of the measurements.
