@@ -11,7 +11,7 @@ with open(datasetPath, "rb") as f:
    f.close()  
 ```
 
-|**Event**|**Day**|  **h** |**max RI**|  **d**  |
+|**Event**|**Day**|  **h** |**max RI**|  **d**  ||
 | **ID**  |       |**[mm]**|**[mm/h]**|**[min]**|
 
 
