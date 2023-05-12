@@ -18,7 +18,7 @@ intensity in mm/h (max RI) observed by the TBRG, and the number of rainy minutes
 
 ![image](https://user-images.githubusercontent.com/114477377/223406835-db3ce7a1-69ca-491d-82c0-567ec7696dd5.png)
 
-```latex
+
 \usepackage{multirow}
 \begin{table*}[b]
     \centering
@@ -125,4 +125,3 @@ intensity in mm/h (max RI) observed by the TBRG, and the number of rainy minutes
 
     \end{tabular}
 \end{table*}
-```
