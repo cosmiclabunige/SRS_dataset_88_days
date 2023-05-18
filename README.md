@@ -18,3 +18,11 @@ intensity in mm/h (max RI) observed by the TBRG, and the number of rainy minutes
 
 ![image](https://user-images.githubusercontent.com/114477377/223406835-db3ce7a1-69ca-491d-82c0-567ec7696dd5.png)
 
+# Experiments conducted in the article
+
+The anomaly detection algorithm (ADA) was trained offline by using the first non-rainy days of the dataset, i.e. events 4, 6, 8, 9, 11. 
+The machine learning algorithms (MLAs) were trained on 10 days, the same 5 of ADA and 5 containing rain observations, i.e. events 1, 2, 3, 5, 7.
+
+The algorithms have been tested on the other events, i.e. 45 non-rainy days and 33 rainy days. 
+
+
