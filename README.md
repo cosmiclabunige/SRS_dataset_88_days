@@ -25,4 +25,5 @@ The machine learning algorithms (MLAs) were trained on 10 days, the same 5 of AD
 
 The algorithms have been tested on the other events, i.e. 45 non-rainy days and 33 rainy days. 
 
-
+You can find an example of code here: https://colab.research.google.com/drive/1dI-YVUWwamK7uMeWmz-XSzjyuDcetw9g#scrollTo=Oe1pdErmsruG.
+You can change the radius of the dish, the classifier choosing between ANN, CNN, or ADA, and the event you want to test from 0 to 77 corresponding to one event the testset.
