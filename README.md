@@ -52,11 +52,11 @@ elif (third_cond | fourth_cond) and $y_{t-1}$:
 ### Machine Learning Algorithms (MLAs) 
 Two MLAs have been adopted along with the ADA: one artificial neural network (ANN) and one convolutional neural network (CNN). The ANN consists of only one hidden layer, while the CNN consists of two convolutional layers, each followed by a pooling layer with a size of 2. Moreover, a fully connected layer with 10 neurons has been stacked after the second pooling. The ReLU function has been adopted as an activation function in the convolutional and fully connected layer. Details about the hyperparameters list of the two MLAs are provided in the article. 
 
-The ANN requires an array of features as input. Thus, for each observation $x_t$, 8 features based on the 29 previous observations and the current one have been extracted (details in the article). While, the CNN receives as input the time series consisting of the current observation $x_t$ and the previous 29. 
+The ANN requires an array of features as input. Thus, for each observation $x_t$, 8 features based on the 29 previous observations and the current one have been extracted (details in the article). While the CNN receives as input the time series consisting of the current observation $x_t$ and the previous 29, without requiring any features extraction procedure. 
 
 #
 The algorithms have been tested on the other 78 days not used during the offline training, i.e. 45 non-rainy days and 33 rainy days. 
 
 # Example of testing code
-You can find an example of code here: https://colab.research.google.com/drive/1dI-YVUWwamK7uMeWmz-XSzjyuDcetw9g#scrollTo=Oe1pdErmsruG.
+You can find an example of code to visualize the results here: https://colab.research.google.com/drive/1dI-YVUWwamK7uMeWmz-XSzjyuDcetw9g#scrollTo=Oe1pdErmsruG.
 You can change the radius of the dish, the classifier choosing between ANN, CNN, or ADA, and the event you want to test from 0 to 77 corresponding to one day in the test set.
