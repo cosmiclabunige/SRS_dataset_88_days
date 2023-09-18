@@ -40,11 +40,11 @@ fourth_cond = std($[x_{t-20},x_{t-19},x_{t-18},x_{t-17},x_{t-16},x_{t-15},x_{t-1
 
 if (first_cond | second_cond) and not $y_{t-1}$:
    
-      $y_{t}$ = True
+   $y_{t}$ = True
 
 elif (third_cond | fourth_cond) and $y_{t-1}$:
 
-      $y_{t}$ = False
+   $y_{t}$ = False
 
 
 The algorithms have been tested on the other days, i.e. 45 non-rainy days and 33 rainy days. 
