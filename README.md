@@ -1,3 +1,4 @@
+# Dataset description 
 The pickle file contains the datasets concerning the 88 days of rainfall measurements described in the article "". The data have been collected using sensors mounted on two parabolic dishes having a diameter of 60cm and 85cm, respectively. 
 
 Open the datasets using the pickle library for python with the following commands:
@@ -22,6 +23,10 @@ intensity in mm/h (max RI) observed by the TBRG, the number of rainy minutes (d)
 
 The anomaly detection algorithm (ADA) was trained offline by using the first non-rainy days of the dataset, i.e. days 4, 6, 8, 9, 11. 
 The machine learning algorithms (MLAs) were trained on 10 days, the same 5 of ADA and 5 containing rain observations, i.e. days 1, 2, 3, 5, 7.
+
+## Algorithms
+
+*Anomaly Detection Algorithm (ADA)* works as an anomaly detection algorithm where we consider as normal data the non-rainy observations and as anomalies the rainy ones. Thus the training dataset consists of only non-rainy data used to compute some thresholds on the normal data to identify the anomalies.
 
 The algorithms have been tested on the other days, i.e. 45 non-rainy days and 33 rainy days. 
 
