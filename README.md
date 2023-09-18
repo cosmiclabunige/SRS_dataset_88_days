@@ -50,7 +50,7 @@ elif (third_cond | fourth_cond) and $y_{t-1}$:
 ### Machine Learning Algorithms (MLAs) 
 
 
-
+#
 The algorithms have been tested on the other 78 days not used during the offline training, i.e. 45 non-rainy days and 33 rainy days. 
 
 You can find an example of code here: https://colab.research.google.com/drive/1dI-YVUWwamK7uMeWmz-XSzjyuDcetw9g#scrollTo=Oe1pdErmsruG.
