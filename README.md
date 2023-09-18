@@ -43,11 +43,11 @@ fourth_cond = std($[x_{t-20},x_{t-19},x_{t-18},x_{t-17},x_{t-16},x_{t-15},x_{t-1
 
 if (first_cond | second_cond) and not $y_{t-1}$:
    
-   $y_{t}$ = True
+&nbsp; $y_{t}$ = True
 
 elif (third_cond | fourth_cond) and $y_{t-1}$:
 
-   $y_{t}$ = False
+&nbsp; $y_{t}$ = False
 
 ### Machine Learning Algorithms (MLAs) 
 Two MLAs have been adopted along with the ADA: one artificial neural network (ANN) and one convolutional neural network (CNN). The ANN consists of only one hidden layer, while the CNN consists of two convolutional layers, each followed by a pooling layer with a size of 2. Moreover, a fully connected layer with 10 neurons has been stacked after the second pooling. The ReLU function has been adopted as an activation function in the convolutional and fully connected layer. Details about the hyperparameters list of the two MLAs are provided in the article. 
