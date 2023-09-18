@@ -36,7 +36,7 @@ second_cond = std($[x_{t-10}, x_{t-9}, x_{t-8}, x_{t-7}, x_{t-6}, x_{t-5}, x_{t-
 
 third_cond = std($[x_{t-10}, x_{t-9}, x_{t-8}, x_{t-7}, x_{t-6}, x_{t-5}, x_{t-4}, x_{t-3}, x_{t-2}, x_{t-1}]$) $< stdev/4$
 
-fourth_cond = std($[x_{t-20}, x_{t-19}, x_{t-18}, x_{t-17}, x_{t-16}, x_{t-15}, x_{t-14}, x_{t-13}, x_{t-12}, x_{t-11}, x_{t-10}, x_{t-9}, x_{t-8}, x_{t-7}, x_{t-6}, x_{t-5}, x_{t-4}, x_{t-3}, x_{t-2}, x_{t-1}]$) $ < stdev/2$
+fourth_cond = std($[x_{t-20}, x_{t-19}, x_{t-18}, x_{t-17}, x_{t-16}, x_{t-15}, x_{t-14}, x_{t-13}, x_{t-12}, x_{t-11}, x_{t-10}, x_{t-9}, x_{t-8}, x_{t-7}, x_{t-6}, x_{t-5}, x_{t-4}, x_{t-3}, x_{t-2}, x_{t-1}]$) $<stdev/2$
 
 if np.all(first_cond | second_cond) and not rainMinuteFlag:
    rainMinuteFlag = True
