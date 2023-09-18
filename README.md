@@ -1,5 +1,6 @@
 # Dataset description 
-The pickle file contains the datasets concerning the 88 days of rainfall measurements described in the article "". The data have been collected using sensors mounted on two parabolic dishes having a diameter of 60cm and 85cm, respectively. 
+The pickle file contains the datasets concerning the 88 days of rainfall measurements described in the article "An Online Training Procedure for Rain Detection
+Models Applied to Satellite Microwave Links". The data have been collected using sensors mounted on two parabolic dishes having a diameter of 60cm and 85cm, respectively. 
 
 Open the datasets using the pickle library for python with the following commands:
 
@@ -23,6 +24,7 @@ intensity in mm/h (max RI) observed by the TBRG, the number of rainy minutes (d)
 
 The anomaly detection algorithm (ADA) was trained offline by using the first non-rainy days of the dataset, i.e. days 4, 6, 8, 9, 11. 
 The machine learning algorithms (MLAs) were trained on 10 days, the same 5 of ADA and 5 containing rain observations, i.e. days 1, 2, 3, 5, 7.
+Details about the offline training procedure are provided in the article.
 
 ## Algorithms
 
@@ -48,10 +50,11 @@ elif (third_cond | fourth_cond) and $y_{t-1}$:
    $y_{t}$ = False
 
 ### Machine Learning Algorithms (MLAs) 
-
+Two MLAs have been adopted along with the ADA: one artificial neural network (ANN) and one convolutional neural network (CNN). The ANN consists of only one hidden layer, while the CNN consists of two convolutional layers, each followed by a pooling layer with a size of 2. Moreover, a fully connected layer with 10 neurons has been stacked after the second pooling. The ReLU function has been adopted as an activation function in the convolutional and fully connected layer. Details about the hyperparameters list of the two MLAs are provided in the article.   
 
 #
 The algorithms have been tested on the other 78 days not used during the offline training, i.e. 45 non-rainy days and 33 rainy days. 
 
+# Example of testing code
 You can find an example of code here: https://colab.research.google.com/drive/1dI-YVUWwamK7uMeWmz-XSzjyuDcetw9g#scrollTo=Oe1pdErmsruG.
 You can change the radius of the dish, the classifier choosing between ANN, CNN, or ADA, and the event you want to test from 0 to 77 corresponding to one day in the test set.
