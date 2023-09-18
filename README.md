@@ -31,9 +31,9 @@ The machine learning algorithms (MLAs) were trained on 10 days, the same 5 of AD
 An SRS observation (in dBm) $x_t$ is classified as follows: 
 
 first_cond = (($x_t$ - $x_{t-1}$) $<-\Delta P_R$ ) | ($x_t < P_R^{min}$)
-second_cond = std([$x_{t-10}$, $x_{t-9}$, $x_{t-8}$, $x_{t-7}$, $x_{t-6}$, $x_{t-5}$, $x_{t-4}$, $x_{t-3}$, $x_{t-2}$, $x_{t-1}$]) > $stdev$
-third_cond = std([$x_{t-10}$, $x_{t-9}$, $x_{t-8}$, $x_{t-7}$, $x_{t-6}$, $x_{t-5}$, $x_{t-4}$, $x_{t-3}$, $x_{t-2}$, $x_{t-1}$]) < self.std / 4
-fourth_cond = std([$x_{t-10}$, $x_{t-9}$, $x_{t-8}$, $x_{t-7}$, $x_{t-6}$, $x_{t-5}$, $x_{t-4}$, $x_{t-3}$, $x_{t-2}$, $x_{t-1}$]) < self.std / 2
+second_cond = std($[x_{t-10}, x_{t-9}, x_{t-8}, x_{t-7}, x_{t-6}, x_{t-5}, x_{t-4}, x_{t-3}, x_{t-2}, x_{t-1}]$) $>stdev$
+third_cond = std([ $x_{t-10}$, $x_{t-9}$, $x_{t-8}$, $x_{t-7}$, $x_{t-6}$, $x_{t-5}$, $x_{t-4}$, $x_{t-3}$, $x_{t-2}$, $x_{t-1}$]) < self.std / 4
+fourth_cond = std([ $x_{t-10}$, $x_{t-9}$, $x_{t-8}$, $x_{t-7}$, $x_{t-6}$, $x_{t-5}$, $x_{t-4}$, $x_{t-3}$, $x_{t-2}$, $x_{t-1}$]) < self.std / 2
 if np.all(first_cond | second_cond) and not rainMinuteFlag:
    rainMinuteFlag = True
    y_tmp.append(1)
