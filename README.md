@@ -28,7 +28,7 @@ The machine learning algorithms (MLAs) were trained on 10 days, the same 5 of AD
 
 *Anomaly Detection Algorithm (ADA)* works as an anomaly detection algorithm where we consider as normal data the non-rainy observations and as anomalies the rainy ones. Thus the training dataset consists of only non-rainy data used to compute some thresholds on the normal data to identify the anomalies. In particular, ADA relies on the heuristic evaluation of three parameters: the minimum signal power $P_R^{min}$, the difference between two consecutive observations $\Delta P_R$, and the standard deviation $stdev$, which is computed over a window of previous observations. 
 
-An SRS observation (in dBm) $x_t$ is classified as follows, based on the previous $y_{t-1} \in [True: False]$: 
+A new SRS observation (in dBm) $x_t$ is classified as follows, based on the previous label $y_{t-1} \in [True; False]$: 
 
 first_cond = (($x_t$ - $x_{t-1}$) $<-\Delta P_R$ ) | ($x_t < P_R^{min}$)
 
@@ -38,12 +38,14 @@ third_cond = std($[x_{t-10}, x_{t-9}, x_{t-8}, x_{t-7}, x_{t-6}, x_{t-5}, x_{t-4
 
 fourth_cond = std($[x_{t-20},x_{t-19},x_{t-18},x_{t-17},x_{t-16},x_{t-15},x_{t-14},x_{t-13},x_{t-12},x_{t-11},x_{t-10},x_{t-9}, x_{t-8}, x_{t-7}, x_{t-6}, x_{t-5}, x_{t-4}, x_{t-3}, x_{t-2}, x_{t-1}]$)$<stdev/2$
 
-if (first_cond | second_cond) and not rainMinuteFlag:
+if (first_cond | second_cond) and not $y_{t-1}$:
    
-   rainMinuteFlag = True
+   $y_{t}$ = True
 
-elif (third_cond | fourth_cond) and rainMinuteFlag:
-   rainMinuteFlag = False
+elif (third_cond | fourth_cond) and $y_{t-1}$:
+
+   $y_{t}$ = False
+
 
 The algorithms have been tested on the other days, i.e. 45 non-rainy days and 33 rainy days. 
 
