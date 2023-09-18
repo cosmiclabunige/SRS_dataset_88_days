@@ -26,7 +26,19 @@ The machine learning algorithms (MLAs) were trained on 10 days, the same 5 of AD
 
 ## Algorithms
 
-*Anomaly Detection Algorithm (ADA)* works as an anomaly detection algorithm where we consider as normal data the non-rainy observations and as anomalies the rainy ones. Thus the training dataset consists of only non-rainy data used to compute some thresholds on the normal data to identify the anomalies. In particular, ADA relies on the heuristic evaluation of three parameters: the minimum signal power P_R^{min}, the difference between two consecutive observations $\Delta P_R$, and the standard deviation $stdev$, which is computed over a window of previous observations.
+*Anomaly Detection Algorithm (ADA)* works as an anomaly detection algorithm where we consider as normal data the non-rainy observations and as anomalies the rainy ones. Thus the training dataset consists of only non-rainy data used to compute some thresholds on the normal data to identify the anomalies. In particular, ADA relies on the heuristic evaluation of three parameters: the minimum signal power $P_R^{min}$, the difference between two consecutive observations $\Delta P_R$, and the standard deviation $stdev$, which is computed over a window of previous observations. 
+
+An SRS observation (in dBm) $x_t$ is classified as follows: 
+
+first_cond = (($x_t$ - $x_{t-1}$) < -$\Delta P_R$ ) | ($x_t$ < $P_R^{min}$)
+second_cond = std([$x_{t-10}$, $x_{t-9}$, $x_{t-8}$, $x_{t-7}$, $x_{t-6}$, $x_{t-5}$, $x_{t-4}$, $x_{t-3}$, $x_{t-2}$, $x_{t-1}$]) > $stdev$
+third_cond = std([$x_{t-10}$, $x_{t-9}$, $x_{t-8}$, $x_{t-7}$, $x_{t-6}$, $x_{t-5}$, $x_{t-4}$, $x_{t-3}$, $x_{t-2}$, $x_{t-1}$]) < self.std / 4
+fourth_cond = std([$x_{t-10}$, $x_{t-9}$, $x_{t-8}$, $x_{t-7}$, $x_{t-6}$, $x_{t-5}$, $x_{t-4}$, $x_{t-3}$, $x_{t-2}$, $x_{t-1}$]) < self.std / 2
+if np.all(first_cond | second_cond) and not rainMinuteFlag:
+   rainMinuteFlag = True
+   y_tmp.append(1)
+elif np.all(third_cond | fourth_cond) and rainMinuteFlag:
+   rainMinuteFlag = False
 
 The algorithms have been tested on the other days, i.e. 45 non-rainy days and 33 rainy days. 
 
