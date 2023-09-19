@@ -12,8 +12,9 @@ dishRadius = "85" # dish diameter
 bool_filterData = False # weather filtering the data or not 
 offlineDays = 5 # number of days taken for the offline training
 timeWindow = 30
-datasetPath = Path("Dataset")
-resultsPath = Path("Results")
+datasetPath = Path("Wet_Dry_Classification") / "Dataset"
+resultsPath =  Path("Wet_Dry_Classification") / "Results"
+imagesPath = Path("Wet_Dry_Classification") / "Images"
 notRainyDays = [7, 13, 16, 17, 26, 27, 28, 38, 39, 51, 54, 55, 56, 59, 62, 63, 64, 71, 72, 81, 84, 128, 141, 167, 170, 180,
                       188, 190, 191, 192, 195, 206, 207, 210, 212, 214, 215, 220, 221, 222, 228, 236, 238, 240, 244, 246, 249, 253,
                       256, 257]
@@ -38,6 +39,7 @@ ADA.Online()
 # ANN.Online()
 
 RC = ResultsClass(resultsPath,
+                  saveImagesPath=imagesPath,
                   dishRadius=dishRadius,
                   whichModels=["ADA"])
 

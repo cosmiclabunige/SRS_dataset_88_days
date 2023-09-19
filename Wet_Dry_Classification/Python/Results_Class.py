@@ -1,3 +1,4 @@
+import os
 import pickle as pk
 import numpy as np
 from pathlib import Path
@@ -52,16 +53,18 @@ def compute_outliers_percentage(x):
 class ResultsClass():
     def __init__(self,
                  resultsPath: str,
+                 saveImagesPath : str,
                  dishRadius: str,
                  whichModels: list):
-
+        if not os.path.exists(saveImagesPath):
+            os.makedirs(saveImagesPath)
         self.__Spe_noRain = []
         self.__Spe_rain = []
         self.__Rec = []
         self.__HM = []
         self.__y_pred = []
         self.__y_true = []
-        self.__path = resultsPath
+        self.__resPath = saveImagesPath
         self.__dishRadius = dishRadius
         self.__models = whichModels
         self.__numOfClassifiers = len(whichModels)
@@ -133,7 +136,7 @@ class ResultsClass():
         ax.tick_params(axis='x', labelsize=22)
         ax.tick_params(axis='y', labelsize=24)
         fig.tight_layout()
-        boxplotpath = Path("Images") / "Boxplot_Non_Rainy.pdf"
+        boxplotpath = self.__resPath / "Boxplot_Non_Rainy.pdf"
         plt.savefig(str(boxplotpath), format='pdf')
 
         for i, m in enumerate(self.__models):
@@ -212,7 +215,7 @@ class ResultsClass():
         ax.tick_params(axis='y', labelsize=24)
         # ax1.set_title('BOX PLOT RAINY DAYS DISH {}cm'.format(radius), fontsize=32)
         fig.tight_layout()
-        boxplotpath = Path("Images") / "Boxplot_Rainy.pdf"
+        boxplotpath = self.__resPath / "Boxplot_Rainy.pdf"
         plt.savefig(str(boxplotpath), format='pdf')
 
         for i, m in enumerate(self.__models):
@@ -304,7 +307,7 @@ class ResultsClass():
         fig.tight_layout()
         plt.ylim([mi, ma])
         plt.yticks([])
-        filename = Path("Images") / "Rec.pdf"
+        filename = self.__resPath / "Rec.pdf"
         plt.savefig(filename, format='pdf')
         ###########################################
        
@@ -328,7 +331,7 @@ class ResultsClass():
         fig.tight_layout()
         plt.ylim([mi, ma])
         plt.yticks([])
-        filename = Path("Images") / "Spe_HM.pdf"
+        filename = self.__resPath / "Spe_HM.pdf"
         plt.savefig(filename, format='pdf')
 
 
