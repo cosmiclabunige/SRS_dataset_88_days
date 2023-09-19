@@ -23,16 +23,16 @@ rainyDays = [4, 5, 6, 8, 14, 21, 58, 60, 61, 73, 86, 89, 97, 127, 133, 136, 149,
 
 
 
-# ADA = ADAClass(datasetPath=datasetPath, dishRadius=dishRadius, offlineDays=offlineDays, notRainyDays=notRainyDays,
-#                rainyDays=rainyDays, timeWindow=timeWindow)
-# ADA.Online()
+ADA = ADAClass(datasetPath=datasetPath, resultsPath=resultsPath, dishRadius=dishRadius, offlineDays=offlineDays, notRainyDays=notRainyDays,
+               rainyDays=rainyDays, timeWindow=timeWindow)
+ADA.Online()
 
-# CNN = CNNClass(datasetPath=datasetPath, dishRadius=dishRadius, offlineDays=offlineDays, notRainyDays=notRainyDays,
+# CNN = CNNClass(datasetPath=datasetPath, resultsPath=resultsPath, dishRadius=dishRadius, offlineDays=offlineDays, notRainyDays=notRainyDays,
 #                rainyDays=rainyDays, bool_filterData=bool_filterData, timeWindow=timeWindow, 
 #                 _filters=[(4, 8), (8, 8), (8, 16), (4, 8, 16), (8, 8, 8), (8, 16, 32)], _kernel_size=[3, 5, 7], _learning_rate=5e-4, _rolls=3)
 # CNN.Online()
 
-# ANN = ANNClass(datasetPath=datasetPath, dishRadius=dishRadius, offlineDays=offlineDays, notRainyDays=notRainyDays,
+# ANN = ANNClass(datasetPath=datasetPath, resultsPath=resultsPath, dishRadius=dishRadius, offlineDays=offlineDays, notRainyDays=notRainyDays,
 #                rainyDays=rainyDays, bool_filterData=bool_filterData, timeWindow=timeWindow, 
 #                _neurons=[25, 50, 75], _lam=[10 ** i for i in range(-4, 5)])
 # ANN.Online()

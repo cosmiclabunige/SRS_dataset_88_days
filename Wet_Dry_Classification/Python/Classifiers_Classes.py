@@ -1,3 +1,4 @@
+import os
 import pickle
 import enlighten
 import collections
@@ -188,6 +189,7 @@ class ReadDataClass():
 class ClassifiersDataClass(ReadDataClass):
     def __init__(self,
                  datasetPath : str,
+                 resultsPath : str,
                  dishRadius : str,
                  offlineDays: int,
                  notRainyDays: list,
@@ -201,7 +203,9 @@ class ClassifiersDataClass(ReadDataClass):
                          offlineDays=offlineDays, 
                          notRainyDays=notRainyDays, 
                          rainyDays=rainyDays)
-
+        if not os.path.exists(resultsPath):
+            os.makedirs(resultsPath)
+        self.resPath = resultsPath
         self.__X_train, self.__y_train = self.create_training_set()
         self.X_val = None
         self.y_val = None
@@ -260,7 +264,7 @@ class ClassifiersDataClass(ReadDataClass):
         if not self.bool_deepNetworks:
             scaler = MinMaxScaler()
             scaler.fit(X_tr_fea)
-            scalerpath = Path("Results") / "scaler.pkl"
+            scalerpath = self.resPath / "scaler.pkl"
             pickle.dump(scaler, open(scalerpath, "wb"))
             X_tr_bal = scaler.transform(X_tr_bal)
 
@@ -283,6 +287,7 @@ class ClassifiersDataClass(ReadDataClass):
 class ANNClass(ClassifiersDataClass):
     def __init__(self, 
                  datasetPath : str,
+                 resultsPath : str,
                  dishRadius : str,
                  offlineDays: int,
                  notRainyDays: list,
@@ -291,6 +296,7 @@ class ANNClass(ClassifiersDataClass):
                  timeWindow: int = 30, 
                  **kwargs):
         super().__init__(datasetPath=datasetPath, 
+                         resultsPath=resultsPath,
                          dishRadius=dishRadius, 
                          offlineDays=offlineDays, 
                          notRainyDays=notRainyDays,
@@ -457,11 +463,11 @@ class ANNClass(ClassifiersDataClass):
         print("ONLINE INFERENCE")
         y_pred = []
         if self.bool_filterData:
-            resultsPath = Path("Results") / f"ANN_Metrics_Filtered_{self.dishRadius}.txt"
+            resultsPath = self.resPath  / f"ANN_Metrics_Filtered_{self.dishRadius}.txt"
             with open(resultsPath, 'w') as f:
                 f.writelines('ANN Filtered Data Results\n')
         else:
-            resultsPath = Path("Results") / f"ANN_Metrics_{self.dishRadius}.txt"
+            resultsPath = self.resPath  / f"ANN_Metrics_{self.dishRadius}.txt"
             with open(resultsPath, 'w') as f:
                 f.writelines('ANN Results\n')
 
@@ -472,7 +478,7 @@ class ANNClass(ClassifiersDataClass):
             x_db = ConvertInDb(x)
             X_seq = CreateSubseq(x_db, tw=self.timeWindow, online=True)
             X_fea = ComputeFeatures(X_seq, verbose=0)
-            scalerpath = Path("Results") / "scaler.pkl"
+            scalerpath = self.resPath  / "scaler.pkl"
             scaler = pickle.load(open(scalerpath, "rb"))
             X_test = scaler.transform(X_fea)
             y_tmp = self.__best_model.predict(X_test, verbose=0)
@@ -504,10 +510,10 @@ class ANNClass(ClassifiersDataClass):
             self.__TrainingOnlineFC()
         data2save = {"SRS": X_online, "dates":days_date, "y_true":y_online, "y_pred": y_pred, "TBRG": TBRG}
         if self.bool_filterData:
-            data2savePath = Path("Results") / f"ANN_Predictions_Filtered_{self.dishRadius}"
+            data2savePath = self.resPath  / f"ANN_Predictions_Filtered_{self.dishRadius}"
             pickle.dump(data2save, open(data2savePath, "wb"))
         else:
-            data2savePath = Path("Results") / f"ANN_Predictions_{self.dishRadius}"
+            data2savePath = self.resPath  / f"ANN_Predictions_{self.dishRadius}"
             pickle.dump(data2save, open(data2savePath, "wb"))
         print("END Online Testing")
         
@@ -950,6 +956,7 @@ class ANNClass(ClassifiersDataClass):
 class ADADataClass(ReadDataClass):
     def __init__(self, 
                  datasetPath : str,
+                 resultsPath : str,
                  dishRadius : str,
                  offlineDays: int,
                  notRainyDays: list,
@@ -961,6 +968,9 @@ class ADADataClass(ReadDataClass):
                          notRainyDays=notRainyDays,
                          rainyDays=rainyDays, 
                          bool_filterData=True)
+        if not os.path.exists(resultsPath):
+            os.makedirs(resultsPath)
+        self.resPath = resultsPath
         self.dataForOnline = collections.deque(maxlen=2*offlineDays)
         self.dataForSTD = collections.deque(maxlen=20)
         self.timeWindow = timeWindow
@@ -1011,12 +1021,14 @@ class ADADataClass(ReadDataClass):
 class ADAClass(ADADataClass):
     def __init__(self, 
                  datasetPath : str,
+                 resultsPath : str,
                  dishRadius : str,
                  offlineDays: int,
                  notRainyDays: list,
                  rainyDays: list, 
                  timeWindow: int = 30):
-        super().__init__(datasetPath=datasetPath, 
+        super().__init__(datasetPath=datasetPath,
+                         resultsPath=resultsPath, 
                          dishRadius=dishRadius, 
                          offlineDays=offlineDays, 
                          notRainyDays=notRainyDays,
@@ -1027,7 +1039,7 @@ class ADAClass(ADADataClass):
         X_online, y_online, days_date, TBRG = self.create_test_set()
         print("ONLINE INFERENCE")
         y_pred = []
-        resultsPath = Path("Results") / f"ADA_Metrics_{self.dishRadius}.txt"
+        resultsPath = self.resPath  / f"ADA_Metrics_{self.dishRadius}.txt"
         with open(resultsPath, 'w') as f:
             f.writelines('Ada Results\n')
         eventPrec = self.dataForOnline[-1][-1]  # take the last minute of the training dataset
@@ -1074,7 +1086,7 @@ class ADAClass(ADADataClass):
                 self.dataForOnline.append(x_db_filt)
                 self.min, self.diff, self.std = self.Compute_Thresholds()
         data2save = {"SRS": X_online, "dates":days_date, "y_true":y_online, "y_pred": y_pred, "TBRG":TBRG}
-        data2savePath = Path("Results") / f"ADA_Predictions_{self.dishRadius}"
+        data2savePath = self.resPath / f"ADA_Predictions_{self.dishRadius}"
         pickle.dump(data2save, open(data2savePath, "wb"))
         print("END Online Testing")
 
@@ -1451,11 +1463,11 @@ class CNNClass(ClassifiersDataClass):
         print("ONLINE INFERENCE")
         y_pred = []
         if self.bool_filterData:
-            resultsPath = Path("Results") / f"CNN_Metrics_Filtered_{self.dishRadius}.txt"
+            resultsPath = self.resPath / f"CNN_Metrics_Filtered_{self.dishRadius}.txt"
             with open(resultsPath, 'w') as f:
                 f.writelines('CNN Filtered Data Results\n')
         else:
-            resultsPath = Path("Results") / f"CNN_Metrics_{self.dishRadius}.txt"
+            resultsPath = self.resPath / f"CNN_Metrics_{self.dishRadius}.txt"
             with open(resultsPath, 'w') as f:
                 f.writelines('CNN Results\n')
 
@@ -1496,9 +1508,9 @@ class CNNClass(ClassifiersDataClass):
             self.TrainingOnlineCNN()
         data2save = {"SRS": X_online, "dates":days_date, "y_true":y_online, "y_pred": y_pred, "TBRG": TBRG}
         if self.bool_filterData:
-            data2savePath = Path("Results") / f"CNN_Predictions_Filtered_{self.dishRadius}"
+            data2savePath = self.resPath / f"CNN_Predictions_Filtered_{self.dishRadius}"
             pickle.dump(data2save, open(data2savePath, "wb"))
         else:
-            data2savePath = Path("Results") / f"CNN_Predictions_{self.dishRadius}"
+            data2savePath = self.resPath / f"CNN_Predictions_{self.dishRadius}"
             pickle.dump(data2save, open(data2savePath, "wb"))
         print("END Online Testing")
