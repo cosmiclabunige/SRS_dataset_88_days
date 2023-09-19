@@ -130,8 +130,10 @@ class ReadDataClass():
                  notRainyDays: list,
                  rainyDays: list):
         
-        datasetPath = Path("Dataset") / f"Processed_SRS_{dishRadius}.pkl"
-        with open(datasetPath, "rb") as f:
+        assert os.path.exists(datasetPath), f"Dataset path {datasetPath} does not exist"
+        datasetFile= datasetPath / f"Processed_SRS_{dishRadius}.pkl"
+        assert os.path.exists(datasetFile), f"File {datasetFile} does not exist"
+        with open(datasetFile, "rb") as f:
             datasetDict = pickle.load(f)
         f.close()
 
