@@ -2,7 +2,7 @@
 The pickle file contains the datasets concerning the 88 days of rainfall measurements described in the article "An Online Training Procedure for Rain Detection
 Models Applied to Satellite Microwave Links". The data have been collected using sensors mounted on two parabolic dishes having a diameter of 60cm and 85cm, respectively. 
 
-Open the datasets using the pickle library for python with the following commands:
+Open the datasets using the pickle library for Python with the following commands:
 
 ```ruby
 import pickle as pk 
