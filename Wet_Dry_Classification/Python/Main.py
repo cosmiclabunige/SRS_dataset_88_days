@@ -27,22 +27,22 @@ imagesPath = Path("Images")
 # ADA = ADAClass(datasetPath=datasetPath, resultsPath=resultsPath, dishDiameter=dishDiameter, offlineDays=offlineDays, bool_filterData=bool_filterData)
 # ADA.Online()
 
-# CNN = CNNClass(datasetPath=datasetPath, resultsPath=resultsPath, dishRadius=dishRadius, offlineDays=offlineDays, bool_filterData=bool_filterData, timeWindow=timeWindow, 
+# CNN = CNNClass(datasetPath=datasetPath, resultsPath=resultsPath, dishDiameter=dishDiameter, offlineDays=offlineDays, bool_filterData=bool_filterData, timeWindow=timeWindow, 
 #                 _filters=[(4, 8), (8, 8), (8, 16), (4, 8, 16), (8, 8, 8), (8, 16, 32)], _kernel_size=[3, 5, 7], _learning_rate=5e-4, _rolls=3)
 # CNN.Online()
 
-# ANN = ANNClass(datasetPath=datasetPath, resultsPath=resultsPath, dishRadius=dishRadius, offlineDays=offlineDays, bool_filterData=bool_filterData, timeWindow=timeWindow, 
-#                _neurons=[25, 50, 75], _lam=[10 ** i for i in range(-4, 5)])
-# ANN.Online()
+ANN = ANNClass(datasetPath=datasetPath, resultsPath=resultsPath, dishDiameter=dishDiameter, offlineDays=offlineDays, bool_filterData=bool_filterData, timeWindow=timeWindow, 
+               _neurons=[25, 50, 75], _lam=[10 ** i for i in range(-4, 5)])
+ANN.Online()
 
 
 ### Compute and visualize the results. If you want to only train the models comments these lines
-RC = ResultsClass(resultsPath=resultsPath,
-                  saveImagesPath=imagesPath,
-                  dishDiameter=dishDiameter,
-                  whichModels=["ADA"])
+# RC = ResultsClass(resultsPath=resultsPath,
+#                   saveImagesPath=imagesPath,
+#                   dishDiameter=dishDiameter,
+#                   whichModels=["ADA"])
 
-RC.plot_classification_results("ADA", 0)
+# RC.plot_classification_results("ADA", 0)
 
 
 

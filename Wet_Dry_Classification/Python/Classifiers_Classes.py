@@ -343,17 +343,13 @@ class ClassifiersDataClass(ReadDataClass):
                  resultsPath : str,
                  dishDiameter : str,
                  offlineDays: int,
-                 notRainyDays: list,
-                 rainyDays: list, 
                  timeWindow: int, 
                  bool_filterData: bool,
                  bool_deepNetworks: bool):
         super().__init__(datasetPath=datasetPath, 
                          dishDiameter=dishDiameter, 
                          bool_filterData=bool_filterData,
-                         offlineDays=offlineDays, 
-                         notRainyDays=notRainyDays, 
-                         rainyDays=rainyDays)
+                         offlineDays=offlineDays)
         if not os.path.exists(resultsPath):
             os.makedirs(resultsPath)
         self.resPath = resultsPath
@@ -396,14 +392,6 @@ class ClassifiersDataClass(ReadDataClass):
         y_tr = np.asarray(y_tr)
         X_tr = np.reshape(X_tr, (X_tr.shape[0] * X_tr.shape[1]))
         y_tr = np.reshape(y_tr, (y_tr.shape[0] * y_tr.shape[1]))
-        X_db = ConvertInDb(X_tr)
-
-        if self.bool_filterData:
-            # print("DATA HAVE BEEN FILTERED")
-            X_tr = FilterData(X_db)
-        else:
-            X_tr = X_db
-
         X_tr_seq, y_tr_seq = CreateSubseq(X_tr, tw=self.timeWindow, y=y_tr)
         if  not self.bool_deepNetworks:
             X_tr_fea = ComputeFeatures(X_tr_seq)
@@ -441,8 +429,6 @@ class ANNClass(ClassifiersDataClass):
                  resultsPath : str,
                  dishDiameter : str,
                  offlineDays: int,
-                 notRainyDays: list,
-                 rainyDays: list, 
                  bool_filterData: bool = False,
                  timeWindow: int = 30, 
                  **kwargs):
@@ -450,8 +436,6 @@ class ANNClass(ClassifiersDataClass):
                          resultsPath=resultsPath,
                          dishDiameter=dishDiameter, 
                          offlineDays=offlineDays, 
-                         notRainyDays=notRainyDays,
-                         rainyDays=rainyDays, 
                          timeWindow=timeWindow, 
                          bool_filterData=bool_filterData, 
                          bool_deepNetworks=False)
@@ -626,8 +610,7 @@ class ANNClass(ClassifiersDataClass):
             x = np.concatenate((self.last_events, x))
             self.last_events = x[-self.timeWindow:]
             y = y_online[i]
-            x_db = ConvertInDb(x)
-            X_seq = CreateSubseq(x_db, tw=self.timeWindow, online=True)
+            X_seq = CreateSubseq(x, tw=self.timeWindow, online=True)
             X_fea = ComputeFeatures(X_seq, verbose=0)
             scalerpath = self.resPath  / "scaler.pkl"
             scaler = pickle.load(open(scalerpath, "rb"))
@@ -672,18 +655,16 @@ class ANNClass(ClassifiersDataClass):
 class CNNClass(ClassifiersDataClass):
     def __init__(self, 
                  datasetPath : str,
+                 resultsPath : str,
                  dishDiameter : str,
                  offlineDays: int,
-                 notRainyDays: list,
-                 rainyDays: list, 
                  bool_filterData: bool = False,
                  timeWindow: int = 30,  
                  **kwargs):
         super().__init__(datasetPath=datasetPath, 
+                         resultsPath=resultsPath,
                          dishDiameter=dishDiameter, 
                          offlineDays=offlineDays, 
-                         notRainyDays=notRainyDays,
-                         rainyDays=rainyDays, 
                          timeWindow=timeWindow, 
                          bool_filterData=bool_filterData,
                          bool_deepNetworks=True)
@@ -861,8 +842,7 @@ class CNNClass(ClassifiersDataClass):
             x = np.concatenate((self.last_events, x))
             self.last_events = x[-self.timeWindow:]
             y = y_online[i]
-            x_db = ConvertInDb(x)
-            X_seq = CreateSubseq(x_db, tw=self.timeWindow, online=True)
+            X_seq = CreateSubseq(x, tw=self.timeWindow, online=True)
             X_fea = X_seq
             X_test = X_fea
             y_tmp = self.__best_model.predict(X_test)
