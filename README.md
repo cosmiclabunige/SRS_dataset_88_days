@@ -58,5 +58,5 @@ The ANN requires an array of features as input. Thus, for each observation $x_t$
 The algorithms have been tested on the other 78 days not used during the offline training, i.e. 45 non-rainy days and 33 rainy days. 
 
 # Example of testing code
-You can find an example of code to visualize the results here: https://colab.research.google.com/drive/1dI-YVUWwamK7uMeWmz-XSzjyuDcetw9g#scrollTo=Oe1pdErmsruG.
-You can change the radius of the dish, the classifier choosing between ANN, CNN, or ADA, and the event you want to test from 0 to 77 corresponding to one day in the test set.
+You can find the code to train the models and visualize the results here: https://colab.research.google.com/drive/1dI-YVUWwamK7uMeWmz-XSzjyuDcetw9g#scrollTo=Oe1pdErmsruG.
+Inside the *Main.py*, one can change the radius of the dish (either 60cm or 85cm), the classifier choosing between ANN, CNN, or ADA, and the event one wants to test from 0 to 77 (corresponding to one day in the test set).
