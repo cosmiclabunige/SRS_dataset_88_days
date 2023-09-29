@@ -5,4 +5,4 @@ install:
   - sudo apt-get install -y texlive-xetex
 
 script:
-  - pdflatex -interaction=nonstopmode -halt-on-error ADAParametersUpdating.tex
+  - pdflatex -interaction=nonstopmode -halt-on-error ../ADAParametersUpdating.tex
