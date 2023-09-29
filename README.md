@@ -41,7 +41,7 @@ A new SRS observation (in dBm) $x_t$ is classified as follows, based on the prev
 
 &emsp;&emsp;**fourth_cond** = std($[x_{t-19},x_{t-18},x_{t-17},x_{t-16},x_{t-15},x_{t-14},x_{t-13},x_{t-12},x_{t-11},x_{t-10},x_{t-9}, x_{t-8}, x_{t-7}, x_{t-6}, x_{t-5}, x_{t-4}, x_{t-3}, x_{t-2}, x_{t-1}, x_{t}]$) < $stdev$/2
 
-&emsp;&emsp; $$\color{green}Green$$ (**first_cond** OR **second_cond**) AND NOT $y_{t-1}$:
+&emsp;&emsp; #00f[IF] (**first_cond** OR **second_cond**) AND NOT $y_{t-1}$:
    
 &emsp;&emsp;&emsp; $y_{t}$ = *True*
 
