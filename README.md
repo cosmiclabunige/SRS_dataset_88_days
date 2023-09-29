@@ -29,7 +29,7 @@ Details about the offline training procedure are provided in the article.
 ## Algorithms
 
 ### Anomaly Detection Algorithm (ADA)
-It works as an anomaly detection algorithm where we consider as normal data the non-rainy observations and as anomalies the rainy ones. Thus the training dataset consists of only non-rainy data used to compute some thresholds on the normal data to identify the anomalies. In particular, ADA relies on the heuristic evaluation of three parameters: the minimum signal power $P_R^{min}$, the difference between two consecutive observations $\Delta P_R$, and the standard deviation $stdev$, which are computed over a window of previous observations (further details are provided in the article). 
+It works as an anomaly detection algorithm where we consider as normal data the non-rainy observations and as anomalies the rainy ones. Thus the training dataset consists of only non-rainy data used to compute some thresholds on the normal data to identify the anomalies. In particular, ADA relies on the heuristic evaluation of three parameters: the minimum signal power $P_R^{min}$, the maximum difference between two consecutive observations $\Delta P_R$, and the standard deviation $stdev$, which are computed over a window of previous observations (further details are provided in the article). 
 
 A new SRS observation (in dBm) $x_t$ is classified as follows, based on the previous label $y_{t-1} \in [True; False]$ indicating wether it was raining or not: 
 
@@ -48,6 +48,36 @@ if (first_cond | second_cond) and not $y_{t-1}$:
 elif (third_cond | fourth_cond) and $y_{t-1}$:
 
 &emsp; $y_{t}$ = False
+
+
+\begin{algorithm}[t]
+\begin{minipage}[tb]{0.48\textwidth}
+\textbf{Input: }  $\widetilde{\mathcal{T}}_1$
+
+1. \textbf{Calculation of the $P_R^{min}$ parameter}\
+   \begin{algorithmic}[1]
+        \State{Compute the minimum amplitude of SRS signals for each day in $\widetilde{\mathcal{T}}_1 \rightarrow \boldsymbol{a}$}
+        \State{ $P_R^{min} = \text{min} \ \boldsymbol{a}$}
+    \end{algorithmic}
+
+2. \textbf{Calculation of the $\Delta P_R$ parameter}    
+    \begin{enumerate}
+        \item Compute the differences between consecutive observations for each day in $ \widetilde{\mathcal{T}}_1 \rightarrow \widetilde{\mathcal{T}}_1^{diff}$
+        \item Keep only values lower than 0 from $\widetilde{\mathcal{T}}_1^{diff} \rightarrow \mathcal{Z}$
+        \item Compute the overall maximum value in $\mathcal{Z} \rightarrow m$
+        \item $\Delta P_R = m * 1.5$
+    \end{enumerate}
+3. \textbf{Calculation of the $stdev$ parameter}
+    \begin{enumerate}
+        \item Compute the standard deviation on a moving window having a length of 10 samples for each day in $\widetilde{\mathcal{T}}_1 \rightarrow \mathcal{S}$
+        \item  $stdev = \text{max} \ \mathcal{S}$
+    \end{enumerate}
+4. \textbf{Output} Return $P_R^{min}$, $\Delta P_R$, $stdev$
+\caption{ADA algorithm: Computation of the Parameters}
+\label{algo:parameters}
+\end{minipage}
+\end{algorithm}
+
 
 ### Machine Learning Algorithms (MLAs) 
 Two MLAs have been adopted along with the ADA: one artificial neural network (ANN) and one convolutional neural network (CNN). The ANN consists of only one hidden layer, while the CNN consists of two convolutional layers, each followed by a pooling layer with a size of 2. Moreover, a fully connected layer with 10 neurons has been stacked after the second pooling. The ReLU function has been adopted as an activation function in the convolutional and fully connected layer. Details about the hyperparameters list of the two MLAs are provided in the article. 
