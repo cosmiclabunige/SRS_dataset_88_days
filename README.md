@@ -33,21 +33,21 @@ It works as an anomaly detection algorithm where we consider as normal data the 
 
 A new SRS observation (in dBm) $x_t$ is classified as follows, based on the previous label $y_{t-1} \in [True; False]$ indicating wether it was raining or not: 
 
-@@ first_cond @@ = (($x_t$ - $x_{t-1}$) $<-\Delta P_R$ ) | ($x_t < P_R^{min}$)
+&emsp;&emsp; **first_cond** = (($x_t$ - $x_{t-1}$) $<-\Delta P_R$ ) | ($x_t < P_R^{min}$)
 
-@@ second_cond @@ = std($[x_{t-9}, x_{t-8}, x_{t-7}, x_{t-6}, x_{t-5}, x_{t-4}, x_{t-3}, x_{t-2}, x_{t-1}, x_{t}]$) > $stdev$
+&emsp;&emsp;**second_cond** = std($[x_{t-9}, x_{t-8}, x_{t-7}, x_{t-6}, x_{t-5}, x_{t-4}, x_{t-3}, x_{t-2}, x_{t-1}, x_{t}]$) > $stdev$
 
-@@ third_cond @@ = std($[x_{t-9}, x_{t-8}, x_{t-7}, x_{t-6}, x_{t-5}, x_{t-4}, x_{t-3}, x_{t-2}, x_{t-1}, x_{t}]$) < $stdev$/4
+&emsp;&emsp;**third_cond** = std($[x_{t-9}, x_{t-8}, x_{t-7}, x_{t-6}, x_{t-5}, x_{t-4}, x_{t-3}, x_{t-2}, x_{t-1}, x_{t}]$) < $stdev$/4
 
-@@ fourth_cond @@ = std($[x_{t-19},x_{t-18},x_{t-17},x_{t-16},x_{t-15},x_{t-14},x_{t-13},x_{t-12},x_{t-11},x_{t-10},x_{t-9}, x_{t-8}, x_{t-7}, x_{t-6}, x_{t-5}, x_{t-4}, x_{t-3}, x_{t-2}, x_{t-1}, x_{t}]$) < $stdev$/2
+&emsp;&emsp;**fourth_cond** = std($[x_{t-19},x_{t-18},x_{t-17},x_{t-16},x_{t-15},x_{t-14},x_{t-13},x_{t-12},x_{t-11},x_{t-10},x_{t-9}, x_{t-8}, x_{t-7}, x_{t-6}, x_{t-5}, x_{t-4}, x_{t-3}, x_{t-2}, x_{t-1}, x_{t}]$) < $stdev$/2
 
-if (first_cond | second_cond) and not $y_{t-1}$:
+&emsp;&emsp;if (first_cond | second_cond) and not $y_{t-1}$:
    
-&emsp; $y_{t}$ = True
+&emsp;&emsp;&emsp; $y_{t}$ = True
 
-elif (third_cond | fourth_cond) and $y_{t-1}$:
+&emsp;&emsp;elif (third_cond | fourth_cond) and $y_{t-1}$:
 
-&emsp; $y_{t}$ = False
+&emsp;&emsp;&emsp; $y_{t}$ = False
 
 #### Computation of parameters
 
