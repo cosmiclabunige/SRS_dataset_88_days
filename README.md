@@ -50,33 +50,8 @@ elif (third_cond | fourth_cond) and $y_{t-1}$:
 &emsp; $y_{t}$ = False
 
 
-\begin{algorithm}[t]
-\begin{minipage}[tb]{0.48\textwidth}
-\textbf{Input: }  $\widetilde{\mathcal{T}}_1$
+[View My Algorithm PDF](rendered.pdf)
 
-1. \textbf{Calculation of the $P_R^{min}$ parameter}\
-   \begin{algorithmic}[1]
-        \State{Compute the minimum amplitude of SRS signals for each day in $\widetilde{\mathcal{T}}_1 \rightarrow \boldsymbol{a}$}
-        \State{ $P_R^{min} = \text{min} \ \boldsymbol{a}$}
-    \end{algorithmic}
-
-2. \textbf{Calculation of the $\Delta P_R$ parameter}    
-    \begin{enumerate}
-        \item Compute the differences between consecutive observations for each day in $ \widetilde{\mathcal{T}}_1 \rightarrow \widetilde{\mathcal{T}}_1^{diff}$
-        \item Keep only values lower than 0 from $\widetilde{\mathcal{T}}_1^{diff} \rightarrow \mathcal{Z}$
-        \item Compute the overall maximum value in $\mathcal{Z} \rightarrow m$
-        \item $\Delta P_R = m * 1.5$
-    \end{enumerate}
-3. \textbf{Calculation of the $stdev$ parameter}
-    \begin{enumerate}
-        \item Compute the standard deviation on a moving window having a length of 10 samples for each day in $\widetilde{\mathcal{T}}_1 \rightarrow \mathcal{S}$
-        \item  $stdev = \text{max} \ \mathcal{S}$
-    \end{enumerate}
-4. \textbf{Output} Return $P_R^{min}$, $\Delta P_R$, $stdev$
-\caption{ADA algorithm: Computation of the Parameters}
-\label{algo:parameters}
-\end{minipage}
-\end{algorithm}
 
 
 ### Machine Learning Algorithms (MLAs) 
