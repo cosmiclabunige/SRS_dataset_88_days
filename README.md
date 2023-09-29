@@ -49,7 +49,7 @@ elif (third_cond | fourth_cond) and $y_{t-1}$:
 
 &emsp; $y_{t}$ = False
 
-
+#### Computation of parameters
 
 The computation of the three parameters is depicted in the following procedure, where the input $\widetilde{\mathcal{T}}$ represents the dataset containing the observations $x_t$.
 
