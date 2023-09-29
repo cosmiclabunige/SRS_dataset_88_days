@@ -50,7 +50,11 @@ elif (third_cond | fourth_cond) and $y_{t-1}$:
 &emsp; $y_{t}$ = False
 
 
-[View My Algorithm PDF](rendered.pdf)
+
+The computation of the three parameters is depicted in the following procedure, where the input $\wildetilde{\mathcal{T}}$ represents the dataset containing the observations $x_t$.
+
+![ADAParametersUpdating](https://github.com/cosmiclabunige/SRS_dataset_88_days/assets/114477377/a317de05-bd86-465b-8894-8dfd6bac99c1)
+
 
 
 
