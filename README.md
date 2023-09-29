@@ -49,6 +49,8 @@ A new SRS observation (in dBm) $x_t$ is classified as follows, based on the prev
 
 &emsp;&emsp;&emsp; $y_{t}$ = *False*
 
+
+
 #### Computation of parameters
 
 The computation of the three parameters is depicted in the following procedure, where the input $\widetilde{\mathcal{T}}$ represents the dataset containing the observations $x_t$.
