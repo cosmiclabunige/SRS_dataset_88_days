@@ -29,7 +29,7 @@ Details about the offline training procedure are provided in the article.
 ## Algorithms
 
 ### Anomaly Detection Algorithm (ADA)
-It works as an anomaly detection algorithm where we consider as normal data the non-rainy observations and as anomalies the rainy ones. Thus the training dataset consists of only non-rainy data used to compute some thresholds on the normal data to identify the anomalies. In particular, ADA relies on the heuristic evaluation of three parameters: the minimum signal power $P_R^{min}$, the maximum difference between two consecutive observations $\Delta P_R$, and the standard deviation $stdev$, which are computed over a window of previous observations (further details are provided in the article). 
+It works as an anomaly detection algorithm where we consider as normal data the non-rainy observations and as anomalies the rainy ones. Thus the training dataset consists of only non-rainy data used to compute some thresholds on the normal data to identify the anomalies. In particular, ADA relies on the heuristic evaluation of three parameters: the minimum signal power $P_R^{min}$, the maximum difference between two consecutive observations $\Delta P_R$, and the standard deviation $stdev$, which are computed over a window of previous observations. 
 
 A new SRS observation (in dBm) $x_t$ is classified as follows, based on the previous label $y_{t-1} \in [True; False]$ indicating wether it was raining or not: 
 
