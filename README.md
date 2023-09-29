@@ -33,7 +33,7 @@ It works as an anomaly detection algorithm where we consider as normal data the 
 
 A new SRS observation (in dBm) $x_t$ is classified as follows, based on the previous label $y_{t-1} \in [True; False]$ indicating wether it was raining or not: 
 
-$${\color{red}first_cond}$$= (($x_t$ - $x_{t-1}$) $<-\Delta P_R$ ) | ($x_t < P_R^{min}$)
+$${\color{red}first\_cond}$$ = (($x_t$ - $x_{t-1}$) $<-\Delta P_R$ ) | ($x_t < P_R^{min}$)
 
 <span style="color: red;"> second_cond </span> = std($[x_{t-9}, x_{t-8}, x_{t-7}, x_{t-6}, x_{t-5}, x_{t-4}, x_{t-3}, x_{t-2}, x_{t-1}, x_{t}]$) > $stdev$
 
