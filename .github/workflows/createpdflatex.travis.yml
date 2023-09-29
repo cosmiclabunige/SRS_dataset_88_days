@@ -1,8 +1,0 @@
-language: generic
-
-install:
-  - sudo apt-get update
-  - sudo apt-get install -y texlive-xetex
-
-script:
-  - xelatex -interaction=nonstopmode -halt-on-error ../../ADAParametersUpdating.tex
