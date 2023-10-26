@@ -71,3 +71,4 @@ The algorithms have been tested on the other 78 days not used during the offline
 # Example of testing code
 You can find the code to train the models and visualize the results here: https://colab.research.google.com/drive/1dI-YVUWwamK7uMeWmz-XSzjyuDcetw9g#scrollTo=Oe1pdErmsruG.
 Inside the *Main.py*, one can change the radius of the dish (either 60cm or 85cm), the classifier choosing between ANN, CNN, or ADA, and the event one wants to test from 0 to 77 (corresponding to one day in the test set).
+Moreover, it is possible to visualize the results as boxplots that will be saved as pdf in the folder named "Images". 
