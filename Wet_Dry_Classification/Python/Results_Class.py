@@ -205,7 +205,7 @@ class ResultsClass():
         ax.tick_params(axis='y', labelsize=24)
         fig.tight_layout()
         # Save the plot as a pdf
-        boxplotpath = self.__resPath / "Boxplot_Non_Rainy.pdf"
+        boxplotpath = self.__resPath / f"Boxplot_Non_Rainy_{self.__dishDiameter}.pdf"
         plt.savefig(str(boxplotpath), format='pdf')
 
         # Print the percetanges of data below the lower wisker and above the upper wisker for each evaluated model
@@ -294,7 +294,7 @@ class ResultsClass():
         ax.tick_params(axis='y', labelsize=24)
         fig.tight_layout()
         # Save the plot as a pdf
-        boxplotpath = self.__resPath / "Boxplot_Rainy.pdf"
+        boxplotpath = self.__resPath / f"Boxplot_Rainy_{self.__dishDiameter}.pdf"
         plt.savefig(str(boxplotpath), format='pdf')
         # Print the percetanges of data below the lower wisker and above the upper wisker for each evaluated model and for each metric
         for i, m in enumerate(self.__models):
@@ -413,7 +413,7 @@ class ResultsClass():
         plt.ylim([mi, ma])
         plt.yticks([])
         # Save the plot in a pdf
-        filename = self.__resPath / "Rec.pdf"
+        filename = self.__resPath / f"Rec_{self.__dishDiameter}.pdf"
         plt.savefig(filename, format='pdf')
 
         # ########## SPECIFICITY AND HM ############
@@ -442,7 +442,7 @@ class ResultsClass():
         plt.ylim([mi, ma])
         plt.yticks([])
         # Save the plot in a pdf
-        filename = self.__resPath / "Spe_HM.pdf"
+        filename = self.__resPath / f"Spe_HM_{self.__dishDiameter}.pdf"
         plt.savefig(filename, format='pdf')
 
 
