@@ -74,7 +74,8 @@ Inside the *Main.py*, one can change the radius of the dish (either 60cm or 85cm
 Moreover, it is possible to visualize the results as boxplots that will be saved as pdf in the folder named "Images". 
 
 # Comparison between 85 cm and 60 cm dishes
-In this section, we briefly compare the results achieved by the algorithms trained on data retrieved by the 85 cm, deeply described in the article, with the 60 cm ones. 
+In this section, we briefly compare the results achieved by the algorithms trained on data retrieved by the 85 cm, deeply described in the article, with the 60 cm ones. Any difference to the figures shown in the article is because we rerun the models.
+
 The following figure shows the specificity boxplots in the case of non-rainy days computed for the three classifiers. 
 ![NoRain](https://github.com/cosmiclabunige/SRS_dataset_88_days/assets/114477377/093e1bfb-00f3-4fa6-8a50-c588c81000d3)
 
