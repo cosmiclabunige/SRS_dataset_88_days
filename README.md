@@ -75,14 +75,16 @@ Moreover, it is possible to visualize the results as boxplots that will be saved
 
 # Comparison between 85 cm and 60 cm dishes
 In this section, we briefly compare the results achieved by the algorithms trained on data retrieved by the 85 cm, deeply described in the article, with the 60 cm ones. 
-The following figure show the specificity boxplots in case of non-rainy days computed for the three classifiers. 
+The following figure shows the specificity boxplots in the case of non-rainy days computed for the three classifiers. 
 ![NoRain](https://github.com/cosmiclabunige/SRS_dataset_88_days/assets/114477377/093e1bfb-00f3-4fa6-8a50-c588c81000d3)
 
-Then, the boxplots showing the specificity, the recall, and the harmonic mean is reported.
+Then, the boxplots showing the specificity, the recall, and the harmonic mean are reported.
 ![Rain](https://github.com/cosmiclabunige/SRS_dataset_88_days/assets/114477377/d3a376bf-57e0-401b-8168-93bef758d11a)
 
-Finally, the recall computed for three rain intensity ranges and the specificity in shown. 
+Finally, the recall, computed for three rain intensity ranges, and the specificity during the rainy days are shown. 
 ![REcandSpec](https://github.com/cosmiclabunige/SRS_dataset_88_days/assets/114477377/aaac59d6-9978-4cca-a6c3-f0e502e6eddb)
+
+The results highlight that there is not a clear advantage in using one dish rather than another. For example, in the case of 60 cm, the ANN shows better recall than the 85 cm. On the other side, the 85 cm shows better specificity in particular during the rainy days.
 
 ### Reference
 Please, cite the work as:
