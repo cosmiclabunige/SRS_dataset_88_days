@@ -84,7 +84,7 @@ Then, the boxplots showing the specificity, the recall, and the harmonic mean ar
 Finally, the recall, computed for three rain intensity ranges, and the specificity during the rainy days are shown. 
 ![REcandSpec](https://github.com/cosmiclabunige/SRS_dataset_88_days/assets/114477377/aaac59d6-9978-4cca-a6c3-f0e502e6eddb)
 
-The results highlight that there is not a clear advantage in using one dish rather than another. For example, in the case of 60 cm, the ANN shows better recall than the 85 cm. On the other side, the 85 cm shows better specificity in particular during the rainy days.
+The results highlight that there is not a clear advantage in using one dish rather than another. For example, in the case of 60 cm, the ANN shows better recall than the 85 cm. On the other side, the 85 cm shows better specificity during rainy days.
 
 ### Reference
 Please, cite the work as:
