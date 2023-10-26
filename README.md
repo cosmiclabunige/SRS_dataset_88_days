@@ -63,7 +63,7 @@ The computation of the three parameters is depicted in the following procedure, 
 ### Machine Learning Algorithms (MLAs) 
 Two MLAs have been adopted along with the ADA: one artificial neural network (ANN) and one convolutional neural network (CNN). The ANN consists of only one hidden layer, while the CNN consists of two convolutional layers, each followed by a pooling layer with a size of 2. Moreover, a fully connected layer with 10 neurons has been stacked after the second pooling. The ReLU function has been adopted as an activation function in the convolutional and fully connected layer. Details about the hyperparameters list of the two MLAs are provided in the article. 
 
-The ANN requires an array of features as input. Thus, for each observation $x_t$, 8 features based on the 29 previous observations and the current one have been extracted (details in the article). While the CNN receives as input the time series consisting of the current observation $x_t$ and the previous 29, without requiring any features extraction procedure. 
+The ANN requires an array of features as input. Thus, for each observation, $x_t$, 8 features based on the 29 previous observations and the current one have been extracted (details in the article). While the CNN receives as input the time series consisting of the current observation $x_t$ and the previous 29, without requiring any features extraction procedure. 
 
 #
 The algorithms have been tested on the other 78 days not used during the offline training, i.e. 45 non-rainy days and 33 rainy days. 
@@ -72,3 +72,12 @@ The algorithms have been tested on the other 78 days not used during the offline
 You can find the code to train the models and visualize the results here: https://colab.research.google.com/drive/1dI-YVUWwamK7uMeWmz-XSzjyuDcetw9g#scrollTo=Oe1pdErmsruG.
 Inside the *Main.py*, one can change the radius of the dish (either 60cm or 85cm), the classifier choosing between ANN, CNN, or ADA, and the event one wants to test from 0 to 77 (corresponding to one day in the test set).
 Moreover, it is possible to visualize the results as boxplots that will be saved as pdf in the folder named "Images". 
+
+# Comparison between 85 cm and 60 cm dishes
+In this section, we briefly compare the results achieved by the algorithms trained on data retrieved by the 85 cm, deeply described in the article, with the 60 cm ones. 
+
+[Boxplot_Non_Rainy_60.pdf](https://github.com/cosmiclabunige/SRS_dataset_88_days/files/13178158/Boxplot_Non_Rainy_60.pdf)
+
+
+### Reference
+Please, cite the work as:
