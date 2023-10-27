@@ -5,11 +5,11 @@ from Classifiers_Classes import ANNClass, CNNClass, ADAClass
 from Results_Class import ResultsClass
 from pathlib import Path 
 
-# dish diameter 
-dishDiameter = "85" 
-# wether filtering the SRS signal or not
+# dish diameter
+dishDiameter = "85" # "60"
+# whether filtering the SRS signal or not
 bool_filterData = False
-# Number of days taken for the offline training. 
+## Number of days taken for the offline training. 
 # For ANN and CNN 5 days containing rain events and 5 days not containing rain events will be taken.
 # For ADA only 5 days of non rainy events will be taken. 
 offlineDays = 5 
@@ -23,7 +23,7 @@ resultsPath =  Path("Results")
 imagesPath = Path("Images") 
 
 
-# Train offline and test online the models. If already trained comments these lines, or just comments the algorithm you don't want to train
+## Train offline and test online the models. If already trained comments these lines, or just comments the algorithm you don't want to train
 # ADA = ADAClass(datasetPath=datasetPath, resultsPath=resultsPath, dishDiameter=dishDiameter, offlineDays=offlineDays, bool_filterData=bool_filterData)
 # ADA.Online()
 
